@@ -1,12 +1,13 @@
 ✈️ AI Travel Agent Command Center
-An autonomous, multi-agent system that plans, budgets, and manages complex travel itineraries in real-time.
 
-Semester Project: Agentic AI & RAG Systems (Track A)
+An autonomous, multi-agent system that plans, budgets, and manages complex travel itineraries in real time.
 
-Instructor: Engr. Asima Sarwar * Track: A - Practical Agent System 
-+1
+Semester Project: Agentic AI & RAG Systems
+Track: A — Practical Agent System
+Instructor: Engr. Asima Sarwar
 
 📖 Table of Contents
+
 Project Overview
 
 Key Features
@@ -28,117 +29,223 @@ Project Structure
 Future Roadmap
 
 📌 Project Overview
-The AI Travel Agent Command Center is not just a chatbot; it is a fully functional Agentic System capable of performing real-world planning actions. It solves the problem of fragmented travel planning by orchestrating multiple AI agents to handle research, scheduling, and budgeting simultaneously.
 
-The system features a "Human-in-the-Loop" design. Users don't just receive a static plan; they interact with it. If a user rejects an activity, the agent dynamically reasons about the rejection, searches for a context-aware alternative, and updates the entire itinerary and budget model instantly—demonstrating sophisticated state management and reasoning loops.
+The AI Travel Agent Command Center is not a traditional chatbot. It is a fully functional Agentic AI system capable of performing real-world planning tasks such as research, scheduling, and budgeting through coordinated autonomous agents.
+
+The system solves the problem of fragmented travel planning by orchestrating multiple AI agents that reason over user constraints and dynamically update plans.
+
+A key highlight is its Human-in-the-Loop design:
+
+Users can reject any itinerary item
+
+The system reasons about the rejection
+
+A context-aware alternative is autonomously generated
+
+The itinerary and budget are updated instantly
+This demonstrates advanced state management, reasoning loops, and agent autonomy.
 
 ✨ Key Features
-🌍 Autonomous Trip Planning: Generates day-by-day itineraries based on destination, duration, group size, and travel style (Luxury, Budget, Adventure).
+🌍 Autonomous Trip Planning
 
-🤖 Multi-Agent Orchestration:
+Generates detailed day-by-day itineraries
 
-Research Agent: Scours knowledge bases to find hidden gems, top-rated restaurants, and cultural landmarks.
+Considers destination, duration, group size, and travel style
+(Luxury, Budget, Adventure)
 
-Booking Agent: Estimates real-time costs for hotels, flights, and activities to build a realistic financial model.
+🤖 Multi-Agent Orchestration
 
-🔄 Dynamic Self-Correction (The "Swap" Engine): Users can reject any item in the itinerary. The agent analyzes the rejection and autonomously swaps it for a relevant alternative without regenerating the entire trip.
+Research Agent:
+Finds attractions, cultural landmarks, restaurants, and hidden gems
 
-💰 Real-Time Budgeting: A live financial engine that recalculates the total trip cost instantly whenever an activity is added, removed, or swapped.
+Booking Agent:
+Estimates realistic costs for hotels, flights, and activities
 
-⚡ Low-Latency Architecture: Powered by Groq's LPU inference engine running Llama-3.3-70b-versatile, achieving sub-3-second response times for complex planning tasks.
+🔄 Dynamic Self-Correction (“Swap Engine”)
+
+Users can reject any itinerary item
+
+The agent analyzes why it was rejected
+
+A relevant alternative is swapped in without regenerating the entire trip
+
+💰 Real-Time Budgeting
+
+Live financial model
+
+Automatically recalculates total cost when items change
+
+⚡ Low-Latency Architecture
+
+Powered by Groq LPU inference
+
+Uses Llama-3.3-70B-Versatile
+
+Average response time: < 3 seconds
 
 🏗 System Architecture
-The project follows a Client-Server Architecture with a decoupled Agentic Brain.
 
-Frontend (The Command Center):
+The system follows a Client–Server architecture with a decoupled Agentic Brain.
 
-Built with HTML5, CSS3 (Glassmorphism), and JavaScript.
+🎨 Frontend — Command Center
 
-Acts as the "Action Layer," capturing user intent and rendering agent outputs.
+HTML5, CSS3 (Glassmorphism), Vanilla JavaScript
 
-Handles asynchronous state updates (Budget recalculation, DOM manipulation).
+Captures user intent
 
-Backend (The API Layer):
+Renders structured agent outputs
 
-FastAPI serves as the bridge between the UI and the AI.
+Handles asynchronous UI updates (budget, swaps, timeline)
 
-Exposes endpoints /start_plan (initial generation) and /replace_activity (refinement loop).
+🔌 Backend — API Layer
 
-Enforces strict JSON schema validation using Pydantic models.
+FastAPI for high-performance APIs
 
-The "Brain" (Agent Layer):
+Endpoints:
 
-LangChain handles prompt engineering and chain execution.
+/start_plan — Initial itinerary generation
 
-Groq API provides the inference power.
+/replace_activity — Human-in-the-loop refinement
 
-Reasoning Loop: The agent receives a state (User Constraints), reasons about the best course of action, generates structured data, and awaits feedback.
+Pydantic schema validation ensures strict JSON compliance
+
+🧠 Agent Layer — The Brain
+
+LangChain Core for agent logic and prompt execution
+
+Groq API for ultra-fast inference
+
+Reasoning Loop:
+
+Receive user constraints (state)
+
+Reason about optimal plan
+
+Generate structured JSON
+
+Await user feedback
+
+Refine state dynamically
 
 🛠 Technology Stack
-Language: Python 3.10+
-
-Framework: FastAPI (Backend), Jinja2 (Templating)
-
-AI Orchestration: LangChain Core, LangChain Groq
-
-LLM Model: llama-3.3-70b-versatile (State-of-the-Art open source model)
-
-Frontend: Vanilla JS, CSS Variables, Fetch API
-
-Testing: Custom Python Benchmarking Script (requests, statistics)
-
+Category	Technology
+Language	Python 3.10+
+Backend Framework	FastAPI
+AI Orchestration	LangChain Core, LangChain Groq
+LLM	llama-3.3-70b-versatile
+Frontend	HTML, CSS, Vanilla JS
+Templating	Jinja2
+Testing	Custom Python Benchmark Script
+Deployment Ready	Yes
 🧠 Agent Capabilities
-This system fulfills the Track A requirements by implementing:
 
-Structured Reasoning: The agent does not output unstructured text. It strictly adheres to a complex JSON schema, ensuring data interoperability with the frontend.
+This project fully satisfies Track-A requirements:
 
-Context Retention: When swapping an activity, the agent retains the context of the trip (e.g., "If the user is in Tokyo on Day 2, finding a replacement activity must be geographically close to other Day 2 activities").
+✅ Structured Reasoning
 
-Tool Simulation: The system simulates two distinct sub-agents (Research & Booking) that run in parallel to populate the dashboard.
+Agent outputs strict JSON only
+
+No unstructured text
+
+Guaranteed frontend compatibility
+
+✅ Context Retention
+
+Activity swaps respect:
+
+Day
+
+Location
+
+Nearby activities
+
+Prevents illogical replacements
+
+✅ Tool Simulation
+
+Simulated parallel sub-agents:
+
+Research Agent
+
+Booking Agent
+
+Demonstrates realistic agent collaboration
 
 🚀 Installation & Setup
-Follow these steps to deploy the agent locally.
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/ai-travel-agent.git
+cd ai-travel-agent
 
-1. Clone the Repository
-2. Create a Virtual Environment
-It is recommended to use a virtual environment to manage dependencies.
-3. Install Dependencies
-4. Configure Environment Variables
-Create a .env file in the root directory and add your Groq API key (free tier available at console.groq.com).
+2️⃣ Create a Virtual Environment
+python -m venv venv
+source venv/bin/activate   # macOS/Linux
+
+3️⃣ Install Dependencies
+pip install -r requirements.txt
+
+4️⃣ Configure Environment Variables
+
+Create a .env file:
+
+GROQ_API_KEY=your_api_key_here
+
+
+Get a free API key from: https://console.groq.com
+
+▶️ Usage Guide
+Run the Application
+python main.py
+
+Access the Dashboard
+
+Open your browser at:
+
+http://localhost:8000
 
 📊 Evaluation & Benchmarking
-Per the project requirements, the agent includes a custom automated evaluation pipeline.
 
-Running the Benchmark
-To test the agent's performance, stability, and speed, run the evaluation script:
+The project includes a custom automated evaluation pipeline as required.
+
+Run Benchmark Tests
 python evaluate.py
 
 Metrics Assessed
-The script tests the agent against a "Golden Dataset" of 5 diverse scenarios (e.g., Luxury Trip to Paris vs. Budget Trip to Tokyo) and measures:
 
-Schema Compliance: Success rate of generating valid, parseable JSON.
+Schema Compliance — Valid JSON generation
 
-Constraint Satisfaction: Accuracy in respecting user inputs (Days, Location).
+Constraint Satisfaction — Correct days & locations
 
-Latency: Response time (Target: <3.0 seconds).
+Latency — Target < 3 seconds
 
-Sample Output:
-DESTINATION     | STATUS     | LATENCY (s)  | SCORE     
-------------------------------------------------------------
-Paris           | PASS       | 2.15         | 100/100
-Tokyo           | PASS       | 2.80         | 100/100
-...
+Sample Output
+DESTINATION | STATUS | LATENCY (s) | SCORE
+------------------------------------------
+Paris       | PASS   | 2.15        | 100/100
+Tokyo       | PASS   | 2.80        | 100/100
+
 Average Score: 100%
 Average Latency: 2.3s
 
 📂 Project Structure
 /ai-travel-agent
 │
-├── main.py                 # 🧠 The Brain: FastAPI Server & Agent Logic
-├── evaluate.py             # 🧪 The Test: Automated Benchmarking Pipeline
-├── requirements.txt        # 📦 Dependencies
-├── .env                    # 🔑 Secrets (API Keys - Not committed)
-├── README.md               # 📄 Documentation
+├── main.py          # 🧠 FastAPI server & agent logic
+├── evaluate.py      # 🧪 Automated benchmarking pipeline
+├── requirements.txt # 📦 Dependencies
+├── .env             # 🔑 API keys (not committed)
+├── README.md        # 📄 Documentation
 │
 └── templates
-    └── index.html          # 🎨 The Face: Frontend Dashboard (HTML/JS/CSS)
+    └── index.html   # 🎨 Frontend dashboard
+
+🛣 Future Roadmap
+
+🌐 Real-time flight & hotel APIs
+
+🧭 Map-based itinerary visualization
+
+💾 Persistent memory per user
+
+🧑‍🤝‍🧑 Multi-user collaborative planning
+
+☁️ Cloud deployment (AWS / GCP)
